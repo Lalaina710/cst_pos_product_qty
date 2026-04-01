@@ -1,15 +1,19 @@
 # POS Display Product Quantity (Odoo 18)
 
-Affiche la quantité de stock disponible directement sur les cartes produit dans l'interface du Point de Vente.
+Affiche la quantité de stock et le prix de vente directement sur les cartes produit dans l'interface du Point de Vente.
 
-## Fonctionnalité
+## Fonctionnalités
 
+### Badge quantité en stock
 Chaque carte produit dans le POS affiche un badge avec la quantité en stock :
 - **Vert** : stock > 0
 - **Rouge** : stock = 0
 - **NA** : produits combo
 
 Activation/désactivation via **Point de Vente → Configuration → Paramètres → Afficher la quantité des produits**.
+
+### Prix de vente sur la carte
+Le prix de vente unitaire est affiché en bleu sous le nom de chaque produit, formaté avec la devise configurée.
 
 ## Correction : Filtrage par emplacement du POS
 
@@ -33,7 +37,7 @@ Le module original (CodeSphere Tech) affichait la quantité **totale de tous les
 
 1. Le POS lit son **emplacement d'origine** depuis le type d'opération (`Point de Vente → Configuration → Type d'opération → Emplacement d'origine`)
 2. La méthode `get_qty_by_pos_location()` interroge les `stock.quant` uniquement pour cet emplacement et ses sous-emplacements
-3. Le JS affiche la quantité filtrée sur chaque carte produit
+3. Le JS affiche la quantité filtrée et le prix de vente sur chaque carte produit
 
 ## Installation
 
@@ -55,7 +59,7 @@ Le module original (CodeSphere Tech) affichait la quantité **totale de tous les
 ## Crédits
 
 - Module original : CodeSphere Tech
-- Correction filtrage par emplacement : Lalaina710
+- Correction filtrage par emplacement + affichage prix : Lalaina710
 
 ## Licence
 
