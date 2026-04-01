@@ -16,12 +16,12 @@ patch(ProductCard.prototype, {
         });
     },
 
-    async fetchProductDetails(productId) {
+    async fetchProductDetails(productIds) {
         const configId = this.pos.config.id;
         const res = await this.orm.call(
             "product.product",
             "get_qty_by_pos_location",
-            [[productId], configId]
+            [productIds, configId]
         );
         return res;
     },
