@@ -14,7 +14,7 @@
         <xpath expr="//div[hasclass('product-content')]" position="after">
             <div class="d-flex px-2 pb-1">
                 <span class="fw-bold text-primary small">
-                    <t t-esc="env.utils.formatCurrency(props.product.lst_price)"/>
+                    <t t-esc="productPriceTTC"/>
                 </span>
             </div>
         </xpath>

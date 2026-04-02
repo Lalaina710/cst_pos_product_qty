@@ -12,8 +12,11 @@ Chaque carte produit dans le POS affiche un badge avec la quantité en stock :
 
 Activation/désactivation via **Point de Vente → Configuration → Paramètres → Afficher la quantité des produits**.
 
-### Prix de vente sur la carte
-Le prix de vente unitaire est affiché en bleu sous le nom de chaque produit, formaté avec la devise configurée.
+### Prix TTC sur la carte (avec liste de prix)
+Le prix TTC est affiché en bleu sous le nom de chaque produit, calculé selon la **liste de prix active** :
+- Par défaut, utilise la liste de prix configurée dans le POS
+- Quand un client est sélectionné, le prix s'adapte automatiquement à sa liste de prix
+- Le prix affiché est toujours **TTC** (taxes incluses)
 
 ## Correction : Filtrage par emplacement du POS
 
@@ -37,7 +40,7 @@ Le module original (CodeSphere Tech) affichait la quantité **totale de tous les
 
 1. Le POS lit son **emplacement d'origine** depuis le type d'opération (`Point de Vente → Configuration → Type d'opération → Emplacement d'origine`)
 2. La méthode `get_qty_by_pos_location()` interroge les `stock.quant` uniquement pour cet emplacement et ses sous-emplacements
-3. Le JS affiche la quantité filtrée et le prix de vente sur chaque carte produit
+3. Le JS affiche la quantité filtrée et le prix TTC (selon la liste de prix active) sur chaque carte produit
 
 ## Installation
 
@@ -59,7 +62,7 @@ Le module original (CodeSphere Tech) affichait la quantité **totale de tous les
 ## Crédits
 
 - Module original : CodeSphere Tech
-- Correction filtrage par emplacement + affichage prix : Lalaina710
+- Correction filtrage par emplacement + affichage prix avec liste de prix : Lalaina710
 
 ## Licence
 

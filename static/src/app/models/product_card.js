@@ -69,4 +69,10 @@ patch(ProductCard.prototype, {
             show_qty: true,
         };
     },
+
+    get productPriceTTC() {
+        const product = this.props.product;
+        const taxesData = this.pos.getProducePriceDetails(product);
+        return this.env.utils.formatCurrency(taxesData.total_included);
+    },
 });
