@@ -14,7 +14,7 @@ class ProductProduct(models.Model):
 
     @api.model
     def get_qty_by_pos_location(self, product_ids, config_id):
-        """Return product quantities for the POS stock location only."""
+        """Return available product quantities (on-hand minus reserved) for the POS stock location."""
         config = self.env['pos.config'].browse(config_id)
         location = config.picking_type_id.default_location_src_id
         if not location:
@@ -25,7 +25,10 @@ class ProductProduct(models.Model):
                 ('product_id', 'in', product_ids),
                 ('location_id', 'in', location_ids),
             ],
-            fields=['product_id', 'quantity:sum'],
+            fields=['product_id', 'quantity:sum', 'reserved_quantity:sum'],
             groupby=['product_id'],
         )
-        return {q['product_id'][0]: q['quantity'] for q in quants}
+        return {
+            q['product_id'][0]: q['quantity'] - q['reserved_quantity']
+            for q in quants
+        }
